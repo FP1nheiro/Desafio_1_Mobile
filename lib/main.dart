@@ -33,60 +33,135 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      appBar: AppBar(),
+      drawer: Drawer(
+          child: ListView(
+        padding: EdgeInsets.zero,
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 150, bottom: 25),
-            child: Container(
-              height: 200,
-              width: 200,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                image: const DecorationImage(
-                  image: AssetImage('assets/images/image_2.png'),
-                  fit: BoxFit.cover,
-                ),
-                border: Border.all(width: 10),
-                borderRadius: BorderRadius.circular(10),
+          Container(
+            color: Colors.black,
+            child: const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.black),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://cdn.pixabay.com/photo/2023/04/02/11/19/ai-generated-7894413_1280.jpg"),
+                    radius: 60,
+                  ),
+                ],
               ),
             ),
           ),
-          buildCarousel(),
-          SizedBox(
-            height: 30,
+          ListTile(
+            title: Text("menu item 1"),
           ),
-          ElevatedButton(
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Text(
-                              "Label Modal Gaveta",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 17),
-                            ),
-                            Text(
-                              "Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                      );
-                    });
-              },
-              style: ButtonStyle(
-                  fixedSize: MaterialStateProperty.all(const Size(300, 48)),
-                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
-              child: const Text(
-                "Clique Aqui para Abrir",
-                style: TextStyle(color: Colors.white, fontSize: 15),
-              ))
+          ExpansionTile(
+            title: Text("menu item 2"),
+            children: <Widget>[
+              ListTile(
+                title: Text("submenu 1"),
+              ),
+              ListTile(
+                title: Text("submenu 2"),
+              ),
+              ListTile(
+                title: Text("submenu 3"),
+              ),
+            ],
+          ),
+          ListTile(
+            title: Text("menu item 3"),
+          ),
+          ListTile(
+            title: Text("menu item 4"),
+          ),
         ],
+      )),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "Olá, Joana",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 40, bottom: 5),
+              child: Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/image_2.png'),
+                    fit: BoxFit.cover,
+                  ),
+                  border: Border.all(width: 10),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            buildCarousel(),
+            SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              const Text(
+                                "Label Modal Gaveta",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text(
+                                "Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  "Clique aqui para fechar",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                style: ButtonStyle(
+                                  fixedSize:
+                                      MaterialStateProperty.all(Size(300, 48)),
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.black),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                },
+                style: ButtonStyle(
+                    fixedSize: MaterialStateProperty.all(const Size(300, 48)),
+                    backgroundColor: MaterialStateProperty.all(Colors.blue)),
+                child: const Text(
+                  "Clique Aqui para Abrir",
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ))
+          ],
+        ),
       ),
     );
   }
