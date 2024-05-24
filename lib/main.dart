@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 void main() {
@@ -68,8 +69,11 @@ class _HomePageState extends State<HomePage> {
                               "Label Modal Gaveta",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 17),
-                            
                             ),
+                            Text(
+                              "Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )
                           ],
                         ),
                       );
